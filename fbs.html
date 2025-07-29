@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fırat Bilgisayar Sistemleri - Elazığ Bilgisayar ve Teknoloji Çözümleri</title>
+    <meta name="description" content="1998'den beri Elazığ'da bilgisayar, sarf malzemesi, güvenlik kamerası ve teknik servis hizmetleri. HP, Lenovo, MSI yetkili bayii.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(30, 60, 114, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #64b5f6;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(238, 90, 36, 0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .feature-card p {
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .service-detail {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .service-detail:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .service-header i {
+            font-size: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .service-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content strong {
+            color: #2d3748;
+            display: block;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .service-content li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .service-content li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        .price-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .price-info span:first-child {
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .guarantee, .delivery, .installation, .support, .warranty, .consultation {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .services-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .services-cta h3 {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .services-cta p {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 2rem;
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+
+        .brand-detail {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .brand-detail:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .brand-logo {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 10px;
+        }
+
+        .brand-name-large {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .brand-info h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .brand-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .brand-info li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .brand-info li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .brand-benefits {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .benefit {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .brand-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .brand-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .brand-cta h3 {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .brand-cta p {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-text h3 {
+            color: #64b5f6;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .value-item i {
+            font-size: 2rem;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .value-item h4 {
+            margin-bottom: 1rem;
+        }
+
+        .about-stats {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-container {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #64b5f6;
+        }
+
+        .stat-label {
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #1a202c;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #64b5f6;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #64b5f6;
+            width: 30px;
+            text-align: center;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #64b5f6;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(238, 90, 36, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* WhatsApp Section Styles */
+        .whatsapp-section {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .whatsapp-card {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .whatsapp-header {
+            background: rgba(0,0,0,0.2);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .whatsapp-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-header h3 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .whatsapp-content {
+            padding: 2rem;
+            color: white;
+        }
+
+        .whatsapp-content p {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .whatsapp-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .whatsapp-features .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.8rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .whatsapp-features .feature-item i {
+            color: #fff;
+            width: 20px;
+        }
+
+        .whatsapp-buttons {
+            text-align: center;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .whatsapp-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-btn i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .quick-messages {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-messages h4 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .quick-msg-btn {
+            display: block;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-msg-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateX(10px);
+        }
+
+        .whatsapp-info {
+            margin-top: 2rem;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .whatsapp-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.8rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .whatsapp-info .info-item i {
+            color: #fff;
+            width: 20px;
+        }
+
+        .qr-section {
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .qr-section h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .qr-placeholder i {
+            font-size: 3rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .qr-placeholder p {
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .qr-placeholder small {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+        }
+
+        .qr-info {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .whatsapp-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-content {
+                padding: 1.5rem;
+            }
+            
+            .whatsapp-header {
+                padding: 1.5rem;
+            }
+            
+            .whatsapp-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .qr-placeholder {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .brand-detail {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-desktop"></i>
+                Fırat Bilgisayar
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#anasayfa">Ana Sayfa</a></li>
+                    <li><a href="#hizmetler">Hizmetler</a></li>
+                    <li><a href="#markalar">Markalar</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="anasayfa">
+        <div class="hero-content">
+            <h1>Fırat Bilgisayar Sistemleri</h1>
+            <p>1998'den beri Elazığ'da teknoloji çözümlerinizin güvenilir adresi. Bilgisayar, sarf malzemesi, güvenlik sistemleri ve profesyonel teknik servis hizmetleri.</p>
+            <a href="#iletisim" class="cta-button">
+                <i class="fas fa-phone"></i> Hemen İletişime Geçin
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="ozellikler">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Neden Fırat Bilgisayar?</h2>
+                <p>25 yıllık tecrübemiz ve müşteri memnuniyeti odaklı yaklaşımımızla teknoloji ihtiyaçlarınıza profesyonel çözümler sunuyoruz.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>25 Yıllık Tecrübe</h3>
+                    <p>1998'den beri sektördeki tecrübemizle müşterilerimize en kaliteli hizmeti sunuyoruz.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Profesyonel Teknik Servis</h3>
+                    <p>Uzman teknisyen kadromuzla tüm bilgisayar, yazıcı ve donanım tamiri hizmetleri.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Güvenilir Partnerlik</h3>
+                    <p>HP, Lenovo, MSI gibi dünya markalarının yetkili bayiliğiyle güvenilir hizmet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="hizmetler">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Hizmetlerimiz</h2>
+                <p>25 yıllık tecrübemizle teknoloji ihtiyaçlarınız için kapsamlı çözümler sunuyoruz</p>
+            </div>
+
+            <!-- Bilgisayar Satışı -->
+            <div class="service-detail fade-in">
+                <div class="service-header">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Bilgisayar Satışı</h3>
+                </div>
+                <div class="service-content">
+                    <strong>Masaüstü Bilgisayarlar:</strong>
+                    <ul>
+                        <li>Gaming PC'ler (MSI, Intel, AMD işlemcili)</li>
+                        <li>Ofis bilgisayarları (HP, Lenovo)</li>
+                        <li>Workstation'lar (profesyonel çalışma istasyonları)</li>
+                        <li>All-in-One PC'ler</li>
+                    </ul>
+                    <strong>Dizüstü Bilgisayarlar:</strong>
+                    <ul>
+                        <li>HP Pavilion, EliteBook serisi</li>
+                        <li>Lenovo ThinkPad, IdeaPad serisi</li>
+                        <li>MSI Gaming Laptop'lar</li>
+                        <li>Ultrabook'lar ve iş laptop'ları</li>
+                    </ul>
+                    <div class="price-info">
+                        <span>Fiyat aralığı: 15.000₺ - 150.000₺</span>
+                        <span class="guarantee">2 yıl garanti</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sarf Malzemesi -->
+            <div class="service-detail fade-in">
+                <div class="service-header">
+                    <i class="fas fa-print"></i>
+                    <h3>Sarf Malzemesi</h3>
+                </div>
+                <div class="service-content">
+                    <strong>Yazıcı Kartuşları:</strong>
+                    <ul>
+                        <li>HP orijinal ve muadil kartuşlar</li>
+                        <li>Canon inkjet ve lazer kartuşlar</li>
+                        <li>Epson, Brother kartuşları</li>
+                        <li>Toner dolumu hizmeti</li>
+                    </ul>
+                    <strong>Diğer Sarf Malzemeleri:</strong>
+                    <ul>
+                        <li>Yazıcı kağıtları (A4, A3, fotoğraf kağıdı)</li>
+                        <li>CD/DVD diskler</li>
+                        <li>USB bellek, SD kart</li>
+                        <li>Temizlik malzemeleri</li>
+                    </ul>
+                    <div class="price-info">
+                        <span>Kartuş fiyatları: 50₺'den başlayan fiyatlar</span>
+                        <span class="delivery">Ücretsiz teslimat</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Güvenlik Kamerası -->
+            <div class="service-detail fade-in">
+                <div class="service-header">
+                    <i class="fas fa-video"></i>
+                    <h3>Güvenlik Kamera Sistemleri</h3>
+                </div>
+                <div class="service-content">
+                    <strong>Kamera Türleri:</strong>
+                    <ul>
+                        <li>IP Kameralar (2MP, 4MP, 8MP)</li>
+                        <li>Analog HD Kameralar</li>
+                        <li>Dome ve Bullet kameralar</li>
+                        <li>Gece görüş teknolojili kameralar</li>
+                    </ul>
+                    <strong>Sistem Özellikleri:</strong>
+                    <ul>
+                        <li>4-64 kanal DVR/NVR sistemler</li>
+                        <li>Mobil uygulama ile uzaktan izleme</li>
+                        <li>Hareket algılama ve alarm sistemi</li>
+                        <li>Profesyonel kurulum ve konfigürasyon</li>
+                    </ul>
+                    <div class="price-info">
+                        <span>Paket fiyatları: 5.000₺'den başlayan fiyatlar</span>
+                        <span class="installation">Ücretsiz keşif</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- İşletme Yazılımları -->
+            <div class="service-detail fade-in">
+                <div class="service-header">
+                    <i class="fas fa-code"></i>
+                    <h3>İşletme Yazılımları</h3>
+                </div>
+                <div class="service-content">
+                    <strong>Akınsoft Yazılımları:</strong>
+                    <ul>
+                        <li>Oktay Muhasebe Programı</li>
+                        <li>Akınsoft CRM (Müşteri İlişkileri Yönetimi)</li>
+                        <li>İnsan Kaynakları ve Bordro Programı</li>
+                        <li>Stok ve Satış Takip Programı</li>
+                    </ul>
+                    <strong>Diğer Yazılımlar:</strong>
+                    <ul>
+                        <li>Microsoft Office paketleri</li>
+                        <li>Antivirus çözümleri</li>
+                        <li>Backup ve yedekleme yazılımları</li>
+                        <li>Özel yazılım geliştirme</li>
+                    </ul>
+                    <div class="price-info">
+                        <span>Yazılım fiyatları: 2.000₺'den başlayan fiyatlar</span>
+                        <span class="support">Ücretsiz eğitim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teknik Servis -->
+            <div class="service-detail fade-in">
+                <div class="service-header">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Teknik Servis Hizmetleri</h3>
+                </div>
+                <div class="service-content">
+                    <strong>Bilgisayar Tamiri:</strong>
+                    <ul>
+                        <li>Anakart tamiri ve değişimi</li>
+                        <li>İşlemci ve RAM arızaları</li>
+                        <li>Hard disk kurtarma</li>
+                        <li>Virüs temizleme ve format</li>
+                    </ul>
+                    <strong>Diğer Tamir Hizmetleri:</strong>
+                    <ul>
+                        <li>Yazıcı tamiri (inkjet, lazer)</li>
+                        <li>Monitör ve ekran kartı tamiri</li>
+                        <li>Laptop ekran değişimi</li>
+                        <li>Güç kaynağı tamiri</li>
+                    </ul>
+                    <div class="price-info">
+                        <span>Servis fiyatları: 150₺'den başlayan fiyatlar</span>
+                        <span class="warranty">3 ay servis garantisi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="services-cta fade-in">
+                <h3>İhtiyacınıza Uygun Çözüm Arıyorsunuz?</h3>
+                <p>25 yıllık tecrübemizle size en uygun teknolojiyi bulalım</p>
+                <a href="#iletisim" class="cta-button">
+                    <i class="fas fa-phone"></i> Ücretsiz Danışmanlık
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands" id="markalar">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Yetkili Olduğumuz Markalar</h2>
+                <p>Dünyaca ünlü markaların yetkili bayisiyle güvenilir alışveriş ve teknik destek</p>
+            </div>
+
+            <!-- HP -->
+            <div class="brand-detail fade-in">
+                <div class="brand-logo">
+                    <div class="brand-name-large">HP</div>
+                </div>
+                <div class="brand-info">
+                    <h3>Hewlett-Packard (HP)</h3>
+                    <strong>Ürün Kategorileri:</strong>
+                    <ul>
+                        <li>HP Pavilion Gaming serisi</li>
+                        <li>HP EliteBook iş laptop'ları</li>
+                        <li>HP LaserJet yazıcılar</li>
+                        <li>HP OfficeJet inkjet yazıcılar</li>
+                        <li>HP Z Workstation'lar</li>
+                    </ul>
+                    <div class="brand-benefits">
+                        <span class="benefit">Yetkili Servis</span>
+                        <span class="benefit">Orijinal Garanti</span>
+                        <span class="benefit">Ücretsiz Kurulum</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lenovo -->
+            <div class="brand-detail fade-in">
+                <div class="brand-logo">
+                    <div class="brand-name-large">Lenovo</div>
+                </div>
+                <div class="brand-info">
+                    <h3>Lenovo</h3>
+                    <strong>Ürün Kategorileri:</strong>
+                    <ul>
+                        <li>ThinkPad iş laptop'ları</li>
+                        <li>IdeaPad kişisel laptop'lar</li>
+                        <li>ThinkCentre masaüstü PC'ler</li>
+                        <li>Legion gaming serileri</li>
+                        <li>ThinkStation workstation'lar</li>
+                    </ul>
+                    <div class="brand-benefits">
+                        <span class="benefit">3 Yıl Garanti</span>
+                        <span class="benefit">On-Site Destek</span>
+                        <span class="benefit">Kurumsal Çözümler</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MSI -->
+            <div class="brand-detail fade-in">
+                <div class="brand-logo">
+                    <div class="brand-name-large">MSI</div>
+                </div>
+                <div class="brand-info">
+                    <h3>MSI (Micro-Star International)</h3>
+                    <strong>Ürün Kategorileri:</strong>
+                    <ul>
+                        <li>MSI Gaming laptop'lar</li>
+                        <li>MSI anakartlar</li>
+                        <li>MSI ekran kartları</li>
+                        <li>MSI gaming masaüstü PC'ler</li>
+                        <li>MSI gaming monitörler</li>
+                    </ul>
+                    <div class="brand-benefits">
+                        <span class="benefit">Gaming Uzmanı</span>
+                        <span class="benefit">Yüksek Performans</span>
+                        <span class="benefit">RGB Aydınlatma</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Akınsoft -->
+            <div class="brand-detail fade-in">
+                <div class="brand-logo">
+                    <div class="brand-name-large">AKİNSOFT</div>
+                </div>
+                <div class="brand-info">
+                    <h3>Akınsoft</h3>
+                    <strong>Ürün Kategorileri:</strong>
+                    <ul>
+                        <li>Oktay Muhasebe Programı</li>
+                        <li>CRM Müşteri İlişkileri</li>
+                        <li>İnsan Kaynakları Programı</li>
+                        <li>Stok Takip Programı</li>
+                        <li>E-Fatura ve E-Defter</li>
+                    </ul>
+                    <div class="brand-benefits">
+                        <span class="benefit">Türkçe Arayüz</span>
+                        <span class="benefit">Yerel Destek</span>
+                        <span class="benefit">Ücretsiz Eğitim</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canon -->
+            <div class="brand-detail fade-in">
+                <div class="brand-logo">
+                    <div class="brand-name-large">CANON</div>
+                </div>
+                <div class="brand-info">
+                    <h3>Canon</h3>
+                    <strong>Ürün Kategorileri:</strong>
+                    <ul>
+                        <li>Canon PIXMA inkjet yazıcılar</li>
+                        <li>Canon imageCLASS lazer yazıcılar</li>
+                        <li>Canon çok fonksiyonlu yazıcılar</li>
+                        <li>Canon fotoğraf yazıcıları</li>
+                        <li>Canon orijinal kartuşlar</li>
+                    </ul>
+                    <div class="brand-benefits">
+                        <span class="benefit">Fotoğraf Kalitesi</span>
+                        <span class="benefit">Dayanıklılık</span>
+                        <span class="benefit">Ekonomik Baskı</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intel -->
+            <div class="brand-detail fade-in">
+                <div class="brand-logo">
+                    <div class="brand-name-large">INTEL</div>
+                </div>
+                <div class="brand-info">
+                    <h3>Intel</h3>
+                    <strong>Ürün Kategorileri:</strong>
+                    <ul>
+                        <li>Intel Core i3, i5, i7, i9 işlemciler</li>
+                        <li>Intel Xeon sunucu işlemcileri</li>
+                        <li>Intel Arc ekran kartları</li>
+                        <li>Intel SSD diskler</li>
+                        <li>Intel NUC mini PC'ler</li>
+                    </ul>
+                    <div class="brand-benefits">
+                        <span class="benefit">En Yeni Teknoloji</span>
+                        <span class="benefit">Yüksek Performans</span>
+                        <span class="benefit">Enerji Verimliliği</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AMD -->
+            <div class="brand-detail fade-in">
+                <div class="brand-logo">
+                    <div class="brand-name-large">AMD</div>
+                </div>
+                <div class="brand-info">
+                    <h3>AMD (Advanced Micro Devices)</h3>
+                    <strong>Ürün Kategorileri:</strong>
+                    <ul>
+                        <li>AMD Ryzen işlemciler</li>
+                        <li>AMD Radeon ekran kartları</li>
+                        <li>AMD EPYC sunucu işlemcileri</li>
+                        <li>AMD APU hibrit işlemciler</li>
+                        <li>AMD Threadripper workstation</li>
+                    </ul>
+                    <div class="brand-benefits">
+                        <span class="benefit">Çoklu İşlem Gücü</span>
+                        <span class="benefit">Gaming Performansı</span>
+                        <span class="benefit">Uygun Fiyat</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Stats -->
+            <div class="brand-stats fade-in">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="stat-content">
+                        <h4>7 Yetkili Marka</h4>
+                        <p>Dünya çapında tanınan teknoloji markaları</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="stat-content">
+                        <h4>Orijinal Garanti</h4>
+                        <p>Tüm ürünlerde marka garantisi</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-tools"></i></div>
+                    <div class="stat-content">
+                        <h4>Yetkili Servis</h4>
+                        <p>Profesyonel teknik destek</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-truck"></i></div>
+                    <div class="stat-content">
+                        <h4>Hızlı Teslimat</h4>
+                        <p>Elazığ genelinde ücretsiz teslimat</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand CTA -->
+            <div class="brand-cta fade-in">
+                <h3>Markalarımızdan En Uygun Ürünü Bulalım</h3>
+                <p>İhtiyacınıza ve bütçenize en uygun teknoloji çözümü için bizimle iletişime geçin</p>
+                <a href="#iletisim" class="cta-button">
+                    <i class="fas fa-search"></i> Ürün Danışmanlığı
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="hakkimizda">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Hakkımızda</h2>
+                    
+                    <h3>Firmamızın Hikayesi</h3>
+                    <p>1998 yılında Elazığ'da kurulan <strong>Fırat Bilgisayar Sistemleri</strong>, o dönemde henüz yaygın olmayan bilgisayar teknolojisini bölgeye getiren öncü firmalardan biridir. 25 yıllık uzun soluklu yolculuğumuzda, teknolojinin hızla gelişen dünyasında kendimizi sürekli yenileyerek müşterilerimize en iyi hizmeti sunma misyonumuzu hiç değiştirmedik.</p>
+                    
+                    <h3>Misyonumuz</h3>
+                    <p>Elazığ ve çevresindeki bireysel ve kurumsal müşterilerimizin teknoloji ihtiyaçlarını karşılamak, en kaliteli ürünleri en uygun fiyatlarla sunmak ve satış sonrası desteğimizle müşteri memnuniyetini en üst seviyede tutmak ana misyonumuz.</p>
+
+                    <h3>Vizyonumuz</h3>
+                    <p>Bölgenin en güvenilir teknoloji partneri olmak, yenilikçi çözümlerle müşterilerimizin işlerini kolaylaştırmak ve dijital dönüşüm süreçlerinde rehberlik etmek vizyonumuzun temelini oluşturuyor.</p>
+
+                    <h3>Değerlerimiz</h3>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Müşteri Odaklılık</h4>
+                            <p>Her zaman müşteri memnuniyetini önceliyor, ihtiyaçlarınıza özel çözümler üretiyoruz.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-award"></i>
+                            <h4>Kalite</h4>
+                            <p>Sadece dünya markalarının orijinal ürünlerini satıyor, kaliteden asla ödün vermiyoruz.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-handshake"></i>
+                            <h4>Güvenilirlik</h4>
+                            <p>25 yıldır verdiğimiz sözleri tutarak güveninizi kazandık ve koruyoruz.</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Yenilikçilik</h4>
+                            <p>Teknolojinin son gelişmelerini takip ediyor, en yeni çözümleri sunuyoruz.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-stats fade-in">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">İstatistiklerimiz</h3>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Yıllık Tecrübe</div>
+                            <div class="stat-desc">1998'den beri sektörde</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5000+</div>
+                            <div class="stat-label">Memnun Müşteri</div>
+                            <div class="stat-desc">Bireysel ve kurumsal</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">7</div>
+                            <div class="stat-label">Yetkili Marka</div>
+                            <div class="stat-desc">Dünya çapında tanınan</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Destek Hizmeti</div>
+                            <div class="stat-desc">Kesintisiz hizmet</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15000+</div>
+                            <div class="stat-label">Tamamlanan Proje</div>
+                            <div class="stat-desc">Başarıyla teslim edilen</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">%98</div>
+                            <div class="stat-label">Müşteri Memnuniyeti</div>
+                            <div class="stat-desc">Sürekli iyileştirme</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="iletisim">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2 style="color: white;">İletişim</h2>
+                <p style="color: rgba(255,255,255,0.8);">Teknoloji ihtiyaçlarınız için bizimle hemen iletişime geçin</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>İletişim Bilgileri</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Adres:</strong><br>
+                            Elazığ Merkez<br>
+                            <small>Detaylı adres için WhatsApp'tan yazın</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Telefon:</strong><br>
+                            05305017401<br>
+                            <small>Aramadan önce WhatsApp'tan randevu alın</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>E-posta:</strong><br>
+                            info@firatbilgisayar.com.tr<br>
+                            <small>Hızlı yanıt için WhatsApp tercih edin</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Çalışma Saatleri:</strong><br>
+                            Pazartesi - Cumartesi: 09:00 - 18:00<br>
+                            <small>WhatsApp 7/24 aktif</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="whatsapp-section fade-in">
+                    <div class="whatsapp-card">
+                        <div class="whatsapp-header">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>WhatsApp Business</h3>
+                        </div>
+                        <div class="whatsapp-content">
+                            <p>Hızlı ve kolay iletişim için WhatsApp Business'tan bize ulaşın!</p>
+                            
+                            <div class="whatsapp-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>7/24 Aktif Destek</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Fotoğraf & Video Paylaşımı</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-file"></i>
+                                    <span>Döküman Gönderimi</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Anlık Yanıt</span>
+                                </div>
+                            </div>
+                            
+                            <div class="whatsapp-buttons">
+                                <a href="https://wa.me/905305017401?text=Merhaba%2C%20Fırat%20Bilgisayar%20hakkında%20bilgi%20almak%20istiyorum." 
+                                   class="whatsapp-btn primary" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    Hemen WhatsApp'tan Yaz
+                                </a>
+                                
+                                <div class="quick-messages">
+                                    <h4>Hızlı Mesaj Şablonları:</h4>
+                                    <a href="https://wa.me/905305017401?text=Bilgisayar%20fiyatları%20hakkında%20bilgi%20almak%20istiyorum." 
+                                       class="quick-msg-btn" target="_blank">
+                                        💻 Bilgisayar Fiyatları
+                                    </a>
+                                    <a href="https://wa.me/905305017401?text=Teknik%20servis%20için%20randevu%20almak%20istiyorum." 
+                                       class="quick-msg-btn" target="_blank">
+                                        🔧 Teknik Servis
+                                    </a>
+                                    <a href="https://wa.me/905305017401?text=Yazıcı%20kartuşu%20fiyatları%20nedir%3F" 
+                                       class="quick-msg-btn" target="_blank">
+                                        🖨️ Sarf Malzemesi
+                                    </a>
+                                    <a href="https://wa.me/905305017401?text=Güvenlik%20kamerası%20sistemi%20kurmak%20istiyorum." 
+                                       class="quick-msg-btn" target="_blank">
+                                        📹 Güvenlik Kamerası
+                                    </a>
+                                    <a href="https://wa.me/905305017401?text=İşletme%20yazılımları%20hakkında%20bilgi%20istiyorum." 
+                                       class="quick-msg-btn" target="_blank">
+                                        💼 İşletme Yazılımları
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="whatsapp-info">
+                                <div class="info-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>WhatsApp Business ile güvenli iletişim</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-history"></i>
+                                    <span>Mesaj geçmişiniz kaydedilir</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>Profesyonel müşteri hizmetleri</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- QR Code Section -->
+                    <div class="qr-section">
+                        <h4><i class="fas fa-qrcode"></i> QR Kod ile Hızlı Erişim</h4>
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                            <p>WhatsApp QR Kodu</p>
+                            <small>Telefon kameranızla okutun</small>
+                        </div>
+                        <p class="qr-info">QR kodu okutarak doğrudan WhatsApp sohbetimizi başlatabilirsiniz</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/905305017401?text=Merhaba%2C%20Fırat%20Bilgisayar%20hakkında%20bilgi%20almak%20istiyorum." 
+       class="floating-whatsapp" target="_blank" title="WhatsApp'tan Bize Ulaşın">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Fırat Bilgisayar Sistemleri. Tüm hakları saklıdır. | 1998'den beri Elazığ'da hizmetinizde.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileMenu && navMenu) {
+            mobileMenu.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form kodları kaldırıldı - WhatsApp kullanılıyor
+        
+        console.log('Fırat Bilgisayar Sistemleri - WhatsApp Business entegrasyonu aktif! 📱');
+
+        console.log('Fırat Bilgisayar Sistemleri - Website loaded successfully! 🚀');
+    </script>
+</body>
+</html>
